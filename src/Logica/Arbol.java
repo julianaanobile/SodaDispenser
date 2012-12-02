@@ -35,12 +35,24 @@ public class Arbol {
       }
       else
       {
-      
-         if( !raiz.hundioNinguno() )
+         if(raiz.esMax())
          {
-           nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true);
-           arbolito.add(nodo4);
-           crearArbol(nodo4);
+           if( !raiz.hundioNinguno() )
+           {
+             nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true);
+             arbolito.add(nodo4);
+             crearArbol(nodo4);
+           }
+         }
+         else
+         {
+           if( !raiz.hundioNinguno() )
+           {
+             nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true);
+             arbolito.add(nodo4);
+             crearArbol(nodo4);
+           }
+            
          }
 
          nodo1 = new Nodo(raiz, raiz.getAguaDisponible()-1, raiz.hundioNinguno());

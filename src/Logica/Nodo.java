@@ -14,11 +14,19 @@ public class Nodo {
    private int aguaDisponible;
    private boolean btnNingunoMax;
    private boolean btnNingunoMin;
+   private boolean esMax;
 
-   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno) {
+   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno, boolean esMax) {
       this.padre = padre;
       this.aguaDisponible = aguaDisponible;
       this.btnNinguno = btnNinguno;
+      this.esMax = esMax;
+      if(esMax)
+         btnNingunoMax = btnNinguno;
+      else
+         btnNingunoMin = btnNinguno;
+         
+      
    }
 
    public int getAguaDisponible() {
@@ -29,13 +37,31 @@ public class Nodo {
       this.aguaDisponible = aguaDisponible;
    }
 
-   public boolean hundioNinguno() {
-      return btnNinguno;
+   public boolean isBtnNingunoMax() {
+      return btnNingunoMax;
    }
 
-   public void setBtnNinguno(boolean btnNinguno) {
-      this.btnNinguno = btnNinguno;
+   public void setBtnNingunoMax(boolean btnNingunoMax) {
+      this.btnNingunoMax = btnNingunoMax;
    }
+
+   public boolean isBtnNingunoMin() {
+      return btnNingunoMin;
+   }
+
+   public void setBtnNingunoMin(boolean btnNingunoMin) {
+      this.btnNingunoMin = btnNingunoMin;
+   }
+
+   public boolean esMax() {
+      return esMax;
+   }
+
+   public void setEsMax(boolean esMax) {
+      this.esMax = esMax;
+   }
+
+   
 
    public Nodo getPadre() {
       return padre;
