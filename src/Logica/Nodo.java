@@ -16,26 +16,30 @@ public class Nodo {
    private boolean btnNingunoMin;
    private boolean esMax;
    private int profundidad;
+   private int jugada;
+
+   
    
 
-   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno, boolean esMax, int profundidad) {
+   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno, boolean esMax, int profundidad, int jugada) {
       this.padre = padre;
       this.aguaDisponible = aguaDisponible;
       //this.btnNinguno = btnNinguno;
       this.esMax = esMax;
+      this.jugada = jugada;
       if( btnNinguno == false)
       {
          if(esMax)
-            btnNingunoMax = padre.btnNingunoMax;
+            btnNingunoMax = false;//padre.btnNingunoMax;
          else
-            btnNingunoMin = padre.btnNingunoMin;
+            btnNingunoMin = false;//padre.btnNingunoMin;
       }
       else
       {
          if(esMax)
-            btnNingunoMax = !padre.btnNingunoMax;
+            btnNingunoMax = true;//!padre.btnNingunoMax;
          else
-            btnNingunoMin = !padre.btnNingunoMin;
+            btnNingunoMin = true;//!padre.btnNingunoMin;
          
       }
       if(esMax)
@@ -45,6 +49,14 @@ public class Nodo {
       this.profundidad = profundidad;
          
       
+   }
+
+   public int getProfundidad() {
+      return profundidad;
+   }
+
+   public void setProfundidad(int profundidad) {
+      this.profundidad = profundidad;
    }
 
    public int getAguaDisponible() {
@@ -92,14 +104,13 @@ public class Nodo {
    public int getUtilidad() {
       return utilidad;
    }
-   public int getProfundidad(){
-       return profundidad;
-   }
 
    public void setUtilidad(int utilidad) {
       this.utilidad = utilidad;
    }
    
-   
+   public int getJugada() {
+      return jugada;
+   }
      
 }

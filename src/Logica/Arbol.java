@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class Arbol {
    private Nodo raiz;
-   private int decisionMinimax;
-   private ArrayList arbolito;
+   private int decisionMiniMax;
+   private ArrayList<Nodo> arbolito;
    
    public Arbol(Nodo raiz)
    {
@@ -42,7 +42,11 @@ public class Arbol {
          {
            if( !raiz.hundioNingunoMax() )
            {
+<<<<<<< HEAD
              nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true, !raiz.esMax(), raiz.getProfundidad()+1);
+=======
+             nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true, !raiz.esMax(), raiz.getProfundidad()+1,0);
+>>>>>>> origin/master
              arbolito.add(nodo4);
              crearArbol(nodo4);
            }
@@ -51,26 +55,42 @@ public class Arbol {
          {
            if( !raiz.hundioNingunoMin() )
            {
+<<<<<<< HEAD
              nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true, !raiz.esMax(), raiz.getProfundidad()+1);
+=======
+             nodo4 = new Nodo(raiz, raiz.getAguaDisponible(), true, !raiz.esMax(), raiz.getProfundidad()+1, 0);
+>>>>>>> origin/master
              arbolito.add(nodo4);
              crearArbol(nodo4);
            }
             
          }
 
+<<<<<<< HEAD
          nodo1 = new Nodo(raiz, raiz.getAguaDisponible()-1, false, !raiz.esMax(), raiz.getProfundidad()+1);
+=======
+         nodo1 = new Nodo(raiz, raiz.getAguaDisponible()-1, false, !raiz.esMax(), raiz.getProfundidad()+1, 1);
+>>>>>>> origin/master
          arbolito.add(nodo1);
          crearArbol(nodo1);
          
          if( raiz.getAguaDisponible()-2 >= 0)
          {
+<<<<<<< HEAD
              nodo2 = new Nodo(raiz, raiz.getAguaDisponible()-2, false, !raiz.esMax(), raiz.getProfundidad()+1);
+=======
+             nodo2 = new Nodo(raiz, raiz.getAguaDisponible()-2, false, !raiz.esMax(), raiz.getProfundidad()+1, 2);
+>>>>>>> origin/master
              crearArbol(nodo2);
              arbolito.add(nodo2);
          }  
          if( raiz.getAguaDisponible()-3 >= 0)
          {
+<<<<<<< HEAD
             nodo3 = new Nodo(raiz, raiz.getAguaDisponible()-3, false, !raiz.esMax(), raiz.getProfundidad()+1);
+=======
+            nodo3 = new Nodo(raiz, raiz.getAguaDisponible()-3, false, !raiz.esMax(), raiz.getProfundidad()+1, 3);
+>>>>>>> origin/master
             crearArbol(nodo3);
             arbolito.add(nodo3);
          }
@@ -86,6 +106,23 @@ public class Arbol {
     
    public int encontrarMiniMax()
    {
+      for(int i=arbolito.size()-1; i>0; i--){
+          int util=arbolito.get(i).getUtilidad();
+          
+          if(arbolito.get(i).getPadre().esMax()&&util>arbolito.get(i).getPadre().getUtilidad()){
+             arbolito.get(i).getPadre().setUtilidad(util);
+             
+             
+          }
+          else if(!arbolito.get(i).getPadre().esMax()&&util<arbolito.get(i).getPadre().getUtilidad()){
+             arbolito.get(i).getPadre().setUtilidad(util);
+             decisionMiniMax = arbolito.get(i).getJugada();
+          }
+      }
       
+   }
+   public int getMiniMax()
+   {
+      return decisionMiniMax;
    }
 }
