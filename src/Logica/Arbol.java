@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Arbol {
    private Nodo raiz;
-   private int decisionMinimax;
+   private int desicionMinimax;
    private ArrayList arbolito;
    
    public Arbol(Nodo raiz)
