@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Arbol;
+package Logica;
 
 /**
  *
@@ -12,7 +12,8 @@ public class Nodo {
    private Nodo padre;
    private int utilidad;
    private int aguaDisponible;
-   private boolean btnNinguno;
+   private boolean btnNingunoMax;
+   private boolean btnNingunoMin;
 
    public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno) {
       this.padre = padre;
