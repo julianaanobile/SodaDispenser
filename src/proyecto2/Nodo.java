@@ -13,10 +13,44 @@ public class Nodo {
    private int utilidad;
    private int aguaDisponible;
    private boolean btnNinguno;
-   
-   public expandirse(int opcion)
-   {
-      
+
+   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno) {
+      this.padre = padre;
+      this.aguaDisponible = aguaDisponible;
+      this.btnNinguno = btnNinguno;
    }
+
+   public int getAguaDisponible() {
+      return aguaDisponible;
+   }
+
+   public void setAguaDisponible(int aguaDisponible) {
+      this.aguaDisponible = aguaDisponible;
+   }
+
+   public boolean isBtnNinguno() {
+      return btnNinguno;
+   }
+
+   public void setBtnNinguno(boolean btnNinguno) {
+      this.btnNinguno = btnNinguno;
+   }
+
+   public Nodo getPadre() {
+      return padre;
+   }
+
+   public void setPadre(Nodo padre) {
+      this.padre = padre;
+   }
+
+   public int getUtilidad() {
+      return utilidad;
+   }
+
+   public void setUtilidad(int utilidad) {
+      this.utilidad = utilidad;
+   }
+   
      
 }
