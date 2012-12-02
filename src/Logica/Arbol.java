@@ -101,4 +101,8 @@ public class Arbol {
       }
       
    }
+   public int getMiniMax()
+   {
+      return decisionMiniMax;
+   }
 }
