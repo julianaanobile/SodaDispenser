@@ -4,12 +4,7 @@
  */
 package proyecto2;
 
-import com.sun.java.swing.plaf.windows.WindowsProgressBarUI;
-import java.awt.Color;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-
 
 /**
  *
@@ -23,28 +18,76 @@ public class GameSodaDispenser extends javax.swing.JFrame {
     int n = 0;
     int min = 0;
     int max = 10;
-    
+
     public GameSodaDispenser() {
         initComponents();
-        //jProgressBar1.setUI(new WindowsProgressBarUI());
+
         this.setVisible(false);
         do {
-            try{
+            try {
                 n = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de litros iniciales\ndebe ser un valor numerico mayor o igual a 3"));
-            }catch (Exception e){
-                n=0;
+            } catch (Exception e) {
+                n = 0;
             }
-        } while(n<=3);
+        } while (n < 3);
         min = 0;
-        max =  n+ (n/3);
-        //jProgressBar1.setValue(50);
-        //jProgressBar1.setMinimum(min);
-        //jProgressBar1.setMaximum(100);
-        
-        //jProgressBar1.setString(n+" de "+max);
-        
+        max = n;
+        jProgressBar1.setValue(n);
+        jProgressBar1.setMinimum(min);
+        jProgressBar1.setMaximum(max);
+
+        jProgressBar1.setString(n + " de " + max);
+
         this.setVisible(false);
+    }
+    
+    private void juegaMAX(int numero){
+        JOptionPane.showMessageDialog(null, "va jugar max "+numero);
+        actualizaDispensador(numero, false);
+        switch(numero){
+            case 1: 
+                jButton1.setSelected(true);
+                break;
+            case 2: 
+                jButton2.doClick(2);
+                break;
+            case 3: 
+                jButton3.doClick(2);
+                break;
+            case 0:
+                jButton4.doClick(2);
+                break;
+        }
         
+    }
+    
+    private void juegaPlayer(int numero){
+        actualizaDispensador(numero, true);
+        juegaMAX((int)(Math.random()*4));
+    }
+
+    private void actualizaDispensador(int value, boolean jugador) {
+
+        if (n + value >= 0) {
+            n = n + value;
+            jProgressBar1.setValue(n);
+            jProgressBar1.setString(n + " de " + max);
+            jProgressBar1.repaint();
+            if (n == 0) {
+                jButton1.setEnabled(false);
+                jButton2.setEnabled(false);
+                jButton3.setEnabled(false);
+                jButton4.setEnabled(false);        
+                if(jugador){
+                    JOptionPane.showMessageDialog(null, "PERDISTE IA !!! LOSER!!!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ganaste !!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escoger una cantidad de litros valida.");
+            return;
+        }
     }
 
     /**
@@ -76,7 +119,8 @@ public class GameSodaDispenser extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("The Soda Dispenser");
 
@@ -99,10 +143,20 @@ public class GameSodaDispenser extends javax.swing.JFrame {
         jPanel3.add(jButton2);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dispensador3L.PNG"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/none.gif"))); // NOI18N
         jButton4.setMinimumSize(new java.awt.Dimension(100, 100));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -123,11 +177,10 @@ public class GameSodaDispenser extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jProgressBar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jProgressBar1.setMaximum(10);
         jProgressBar1.setOrientation(1);
         jProgressBar1.setToolTipText("");
         jProgressBar1.setValue(5);
@@ -172,12 +225,21 @@ public class GameSodaDispenser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        juegaPlayer(-2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        juegaPlayer(-1);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        juegaPlayer(-3);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jButton4.setEnabled(false);
+        juegaPlayer(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
