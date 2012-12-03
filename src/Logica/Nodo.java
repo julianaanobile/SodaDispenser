@@ -21,27 +21,27 @@ public class Nodo {
    
    
 
-   public Nodo(Nodo padre, int aguaDisponible, boolean btnNinguno, boolean esMax, int profundidad, int jugada) {
+   public Nodo(Nodo padre, int aguaDisponible, boolean btnNingunoMax, boolean btnNingunoMin, boolean esMax, int profundidad, int jugada) {
       this.padre = padre;
       this.aguaDisponible = aguaDisponible;
       //this.btnNinguno = btnNinguno;
       this.esMax = esMax;
       this.jugada = jugada;
-      if( btnNinguno == false)
-      {
-         if(esMax)
-            btnNingunoMax = false;//padre.btnNingunoMax;
-         else
-            btnNingunoMin = false;//padre.btnNingunoMin;
-      }
-      else
-      {
-         if(esMax)
-            btnNingunoMax = true;//!padre.btnNingunoMax;
-         else
-            btnNingunoMin = true;//!padre.btnNingunoMin;
+      //if( btnNinguno == false)
+      //{
+      //   if(esMax)
+            this.btnNingunoMin = btnNingunoMin;//padre.btnNingunoMax;
+      //   else
+            this.btnNingunoMax = btnNingunoMax;//padre.btnNingunoMin;
+      //}
+      //else
+      //{
+      //   if(esMax)
+      //      btnNingunoMin = true;//!padre.btnNingunoMax;
+      //   else
+      //      btnNingunoMax = true;//!padre.btnNingunoMin;
          
-      }
+      //}
       if(esMax)
          utilidad = (int) Double.NEGATIVE_INFINITY;
       else
